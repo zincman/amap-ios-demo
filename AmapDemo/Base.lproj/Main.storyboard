@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AmapDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gs-Nr-O5h">
+                                <rect key="frame" x="16" y="209" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omk-su-CkQ">
+                                <rect key="frame" x="16" y="267" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accuracy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPx-Il-5Dx">
+                                <rect key="frame" x="16" y="323" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ReGeocode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWt-QE-dzI">
+                                <rect key="frame" x="16" y="385" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Omk-su-CkQ" firstAttribute="leading" secondItem="uPx-Il-5Dx" secondAttribute="leading" id="HpF-Z1-S7f"/>
+                            <constraint firstItem="uPx-Il-5Dx" firstAttribute="centerX" secondItem="8Gs-Nr-O5h" secondAttribute="centerX" id="IGF-a6-Btj"/>
+                            <constraint firstItem="uPx-Il-5Dx" firstAttribute="top" secondItem="Omk-su-CkQ" secondAttribute="bottom" constant="35" id="IXB-5n-WSh"/>
+                            <constraint firstItem="uPx-Il-5Dx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Kve-LX-e0f"/>
+                            <constraint firstItem="Omk-su-CkQ" firstAttribute="top" secondItem="8Gs-Nr-O5h" secondAttribute="bottom" constant="37" id="PfE-mr-r5F"/>
+                            <constraint firstItem="8Gs-Nr-O5h" firstAttribute="leading" secondItem="Omk-su-CkQ" secondAttribute="leading" id="RE6-tY-z1K"/>
+                            <constraint firstItem="8Gs-Nr-O5h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Y4H-QR-NQw"/>
+                            <constraint firstItem="8Gs-Nr-O5h" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="diA-cO-ScM"/>
+                            <constraint firstItem="Omk-su-CkQ" firstAttribute="centerX" secondItem="8Gs-Nr-O5h" secondAttribute="centerX" id="eUA-zk-D2z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="accuLabelOutlet" destination="uPx-Il-5Dx" id="s7t-Lb-NNO"/>
+                        <outlet property="latLabelOutlet" destination="8Gs-Nr-O5h" id="OQa-h2-YgM"/>
+                        <outlet property="lonLabelOutlet" destination="Omk-su-CkQ" id="9M2-D5-KfJ"/>
+                        <outlet property="regeoLabelOutlet" destination="LWt-QE-dzI" id="7Kz-Zt-RC0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
