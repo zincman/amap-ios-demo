@@ -8,25 +8,54 @@
 
 import UIKit
 
-class ViewController: UIViewController, AMapSearchDelegate {
+class ViewController: UIViewController, AMapLocationManagerDelegate {
     @IBOutlet weak var latLabelOutlet: UILabel!
     @IBOutlet weak var lonLabelOutlet: UILabel!
     @IBOutlet weak var accuLabelOutlet: UILabel!
     @IBOutlet weak var regeoLabelOutlet: UILabel!
     
+    let nativeLocationManager = CLLocationManager()
     let locationManager = AMapLocationManager()
-//    let search = AMapSearchAPI()!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        locationManager.delegate = self     //  这一句好重要
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.locationTimeout = 10
-        locationManager.reGeocodeTimeout = 10
+        locationManager.locationTimeout = 15
+        locationManager.reGeocodeTimeout = 15
         
-        
-        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .restricted, .denied:
+                print("No access at the first check.")
+            case .notDetermined:
+                print("Try to request the access")
+                nativeLocationManager.requestAlwaysAuthorization()
+            case .authorizedAlways, .authorizedWhenInUse:
+                requestLocation()
+            }
+        } else {
+            print("Location services are not enabled")
+        }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func amapLocationManager(_ manager: AMapLocationManager!, didChange status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined, .restricted, .denied:
+            print("No Access")
+        case .authorizedWhenInUse, .authorizedAlways:
+            print("Got access and start to locate")
+            requestLocation()
+        }
+    }
+    
+    func requestLocation() {
         locationManager.requestLocation( withReGeocode: true, completionBlock: {
             [weak self] (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
             
@@ -58,36 +87,14 @@ class ViewController: UIViewController, AMapSearchDelegate {
                 self!.latLabelOutlet.text = "lat:\(location.coordinate.latitude)"
                 self!.lonLabelOutlet.text = "lon:\(location.coordinate.longitude)"
                 self!.accuLabelOutlet.text = "accuracy:\(location.horizontalAccuracy)"
-                
-//                let request = AMapReGeocodeSearchRequest()
-//                request.location = AMapGeoPoint.location(withLatitude: CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude))
-//                request.requireExtension = true
-//                print("regeo request")
-//                self!.search.aMapReGoecodeSearch(request)
             }
+            
             if let reGeocode = reGeocode {
                 NSLog("reGeocode:%@", reGeocode)
                 self!.regeoLabelOutlet.text = reGeocode.formattedAddress
             }
         })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-//    func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
-//        print("response")
-//        if let reGeocode = response.regeocode {
-//            NSLog("reGeocode:%@", reGeocode)
-//            self.regeoLabelOutlet.text = reGeocode.formattedAddress
-//        }
-//    }
-//    
-//    func aMapSearchRequest(_ request: Any!, didFailWithError error: Error!) {
-//        print("Error: \(error)")
-//    }
     
 }
 
