@@ -14,6 +14,7 @@ In info.plist add key `Privacy - Location Always Usage Description`
 
 ## 3. Add and Configure Bridging Header
 New a AMapDemoSwift-Bridging-Header.h in the project.
+
 Note: `AMapSearchKit.h` is necessary for reGeocode.
 
 Then configure OC bridging header in target build settings
